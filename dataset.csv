@@ -1,0 +1,91 @@
+message,label
+"Hey, are you joining the team meeting this afternoon?",safe
+"Thanks for sharing the lecture notes, really appreciate it!",safe
+"Happy birthday! Hope you have a wonderful day ahead with family.",safe
+"Could you review the pull request when you have a free moment?",safe
+"Good morning, just checking if the conference tickets are still available.",safe
+"Great presentation today, loved the visual architecture diagrams.",safe
+"Let me know what time works best for our study group call.",safe
+"The package was delivered to the reception desk safely.",safe
+"Can you send over the recipe you talked about yesterday?",safe
+"Congratulations on the new job promotion! Well deserved.",safe
+"We are having lunch at the cafeteria if you want to come along.",safe
+"Thank you for your assistance with the technical support ticket.",safe
+"Do you want to grab coffee before class tomorrow morning?",safe
+"I sent the updated budget spreadsheet to your email address.",safe
+"Hope your flight went smoothly and you arrived safely.",safe
+"Did you catch the game last night? That ending was intense.",safe
+"Please let me know if you need any help with the project slides.",safe
+"It was really great meeting everyone at the networking event.",safe
+"Let's reschedule our call for Thursday afternoon if that works.",safe
+"Here is the article link we were discussing during breakfast.",safe
+"Have a relaxing weekend and enjoy your time off!",safe
+"The design team approved the latest prototype mockups.",safe
+"Let's sync up on Monday to finalize the quarterly plan.",safe
+"Thanks for the book recommendation, I started reading it last night.",safe
+"Can anyone recommend a reliable mechanic in the local area?",safe
+"Looking forward to collaborating on the open source repository.",safe
+"Nice meeting you at the workshop, let's keep in touch.",safe
+"Please remember to submit your timesheets before Friday evening.",safe
+"Just following up on the email sent earlier this morning.",safe
+"The weather looks great for the weekend hiking trip.",safe
+"Why haven't you answered my messages from earlier today?",suspicious
+"I noticed you were online ten minutes ago but did not reply to me.",suspicious
+"Can you tell me which neighborhood you usually hang out in on weekends?",suspicious
+"I've been trying to find your other social media profiles for hours.",suspicious
+"Who was that person walking next to you in your recent story?",suspicious
+"You shouldn't ignore people who just want to know you better.",suspicious
+"Do you live alone in that apartment you posted about?",suspicious
+"I made five new accounts just to see if you would respond to one.",suspicious
+"Tell me your daily routine, I really want to understand your schedule.",suspicious
+"Why did you delete your comment? I saw what you wrote before.",suspicious
+"I know which gym you go to, do you usually go in the evenings?",suspicious
+"You look much better when you don't wear sunglasses in your pictures.",suspicious
+"Why do you keep rejecting my follow requests? What are you hiding?",suspicious
+"I asked your friend about you and they wouldn't give me your phone number.",suspicious
+"You really shouldn't be ignoring someone who cares about you this much.",suspicious
+"I can find out your real address if you don't tell me yourself.",suspicious
+"Are you still working at the same office building downtown?",suspicious
+"I keep checking your status every hour to see if you're active.",suspicious
+"Don't talk to other guys on your feed, you should only talk to me.",suspicious
+"Why are you being so cold to me? I only asked for your private number.",suspicious
+"I know what car you drive, saw you driving near the shopping center.",suspicious
+"You need to reply to me faster instead of leaving me on read.",suspicious
+"I have been asking around about where you spend your Friday nights.",suspicious
+"Why won't you tell me which college campus you attend?",suspicious
+"I saved all your photos to my private folder so I can keep looking at them.",suspicious
+"You can't keep avoiding this conversation forever, pick up your phone.",suspicious
+"Send me your live location right now so I know you are actually home.",suspicious
+"I saw you changed your profile picture at 2 AM, why were you awake?",suspicious
+"I'm going to keep messaging every day until you give me your contact info.",suspicious
+"Are you sure nobody is visiting you tonight? Just curious.",suspicious
+"I am tracking your location and I will follow you everywhere.",cyberstalking
+"I know where you live and I took photos of your front door yesterday.",cyberstalking
+"I am watching your every move from across the street right now.",cyberstalking
+"You cannot hide from me, I will find you no matter where you move.",cyberstalking
+"I know where you work and I will be waiting outside your office at 5 PM.",cyberstalking
+"Stop ignoring me or you will regret walking to your car alone tonight.",cyberstalking
+"I know your home address, your phone number, and where your sister goes to school.",cyberstalking
+"I am watching you through your bedroom window right now, turn off the light.",cyberstalking
+"You cannot escape me. I put a tracker on your vehicle.",cyberstalking
+"I will follow you home from your train station every single day.",cyberstalking
+"I will make sure your life becomes a nightmare if you don't reply immediately.",cyberstalking
+"I know what floor your apartment is on and I am standing in your hallway.",cyberstalking
+"You think blocking my number will stop me? I will show up at your doorstep.",cyberstalking
+"I am monitoring all your internet traffic and every place you visit.",cyberstalking
+"I know your daily commute route and exactly what time you leave your house.",cyberstalking
+"I will find your family and tell them everything if you keep running away.",cyberstalking
+"You cannot get away from me, I have eyes on you wherever you go.",cyberstalking
+"I am following behind your car right now, look in your rear view mirror.",cyberstalking
+"I took pictures of you entering the grocery store thirty minutes ago.",cyberstalking
+"Answer me now or I am coming over to your house to confront you.",cyberstalking
+"I will track down every member of your family until you speak to me.",cyberstalking
+"There is nowhere you can go that I won't find you and follow you.",cyberstalking
+"I am parked outside your driveway watching your living room light.",cyberstalking
+"You cannot run away from this, I know your exact GPS coordinates right now.",cyberstalking
+"I know what you are wearing today because I was watching you at the bus stop.",cyberstalking
+"I will keep hunting your whereabouts until you have nowhere left to hide.",cyberstalking
+"I have your full home address and I will come visit whether you like it or not.",cyberstalking
+"I will follow you to your workplace every morning until you talk to me.",cyberstalking
+"Don't bother looking for help, I am tracking your phone and listening in.",cyberstalking
+"I am standing right outside your building right now waiting for you to walk out.",cyberstalking

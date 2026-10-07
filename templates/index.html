@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TraceX — AI-Powered Cyberstalking Detection &amp; Digital Safety Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="/" class="brand-logo" id="header-brand-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        <span>TraceX</span>
+        <span class="brand-badge">SecOps</span>
+      </a>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#security" class="nav-link">Security</a></li>
+        <li><a href="/login" class="nav-link">Login</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="/register-page" class="btn btn-primary btn-sm" id="header-register-btn">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section">
+      <div class="hero-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 14 14"/>
+        </svg>
+        <span>AI-Powered Digital Safety Platform</span>
+      </div>
+
+      <h1 class="hero-title">Detect. Analyze. Protect.</h1>
+
+      <p class="hero-desc">
+        TraceX uses AI-assisted message analysis and behavioural risk detection to help users understand potentially suspicious online communications.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/register-page" class="btn btn-primary" id="hero-get-started-btn">Get Started</a>
+        <a href="/login" class="btn btn-secondary" id="hero-login-btn">Sign In to Dashboard</a>
+      </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="section-container" id="features">
+      <div class="section-header">
+        <h2 class="section-title">Security &amp; Detection Capabilities</h2>
+        <p class="section-desc">
+          Structured cyber safety tooling engineered for proactive harassment risk assessment and evidence preservation.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="feature-title">AI Message Analysis</h3>
+          <p class="feature-text">
+            Natural language processing utilizing TF-IDF vectorization and classification to detect patterns associated with digital harassment and coercive messaging.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3 class="feature-title">Behavioural Detection</h3>
+          <p class="feature-text">
+            Rule-based behavioural analysis across six threat dimensions: location monitoring, physical surveillance, repeated unwanted contact, intimidation, and pressure tactics.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
+          <h3 class="feature-title">Risk Scoring</h3>
+          <p class="feature-text">
+            Deterministic, weighted scoring combining model probability distributions with behavioral markers to generate calibrated Low, Medium, and High threat classifications.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 class="feature-title">Potential Identity Indicators</h3>
+          <p class="feature-text">
+            Systematic inspection of sender metadata, handle anomalies, and missing profile references to surface potentially deceptive or unverified sender indicators.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="feature-title">Evidence Management</h3>
+          <p class="feature-text">
+            Secure screenshot and document archiving backed by automatic SHA-256 cryptographic hashing to maintain immutable file integrity references.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 class="feature-title">Secure Authentication</h3>
+          <p class="feature-text">
+            PBKDF2/scrypt cryptographic password hashing, role-based access control, session-bound cookies, and an auditable security event log.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section-container" id="how-it-works" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="section-header">
+        <h2 class="section-title">Incident Analysis Workflow</h2>
+        <p class="section-desc">
+          From submission to structured risk report in five straightforward steps.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">STEP 01</div>
+          <h4 class="step-title">Submit Communication</h4>
+          <p class="step-text">Input platform, sender metadata, message body, and optional screenshot/PDF evidence.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">STEP 02</div>
+          <h4 class="step-title">AI Model Inference</h4>
+          <p class="step-text">TraceX vectorizes text content and computes multi-class harassment probabilities.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">STEP 03</div>
+          <h4 class="step-title">Behavioural Detection</h4>
+          <p class="step-text">Rule engines screen for surveillance language, location monitoring, and intimidation.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">STEP 04</div>
+          <h4 class="step-title">Risk Scoring</h4>
+          <p class="step-text">Weighted algorithms synthesize model confidence and behavior into a 0–100 risk rating.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">STEP 05</div>
+          <h4 class="step-title">Secure Archiving</h4>
+          <p class="step-text">Incident details, SHA-256 evidence hash, and audit logs are recorded in SQLite.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Architecture Section -->
+    <section class="section-container" id="security">
+      <div class="section-header">
+        <h2 class="section-title">Security &amp; Integrity Controls</h2>
+        <p class="section-desc">
+          Ground-truth security controls actively enforced across the application stack.
+        </p>
+      </div>
+
+      <div class="card" style="max-width: 900px; margin: 0 auto;">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Security Layer</th>
+                <th>Implementation Mechanism</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Credential Storage</td>
+                <td>Werkzeug PBKDF2/scrypt one-way password hashing (salt + iterations)</td>
+                <td><span class="badge badge-low">Active</span></td>
+              </tr>
+              <tr>
+                <td>Session Security</td>
+                <td>Server-side signed sessions with HttpOnly &amp; SameSite cookies</td>
+                <td><span class="badge badge-low">Active</span></td>
+              </tr>
+              <tr>
+                <td>Access Control</td>
+                <td>Role-based access control (RBAC) protecting endpoints and admin views</td>
+                <td><span class="badge badge-low">Active</span></td>
+              </tr>
+              <tr>
+                <td>Evidence Hashing</td>
+                <td>SHA-256 cryptographic verification upon upload</td>
+                <td><span class="badge badge-low">Active</span></td>
+              </tr>
+              <tr>
+                <td>Database Queries</td>
+                <td>Strict parameterized SQL queries preventing injection attacks</td>
+                <td><span class="badge badge-low">Active</span></td>
+              </tr>
+              <tr>
+                <td>Audit Trail</td>
+                <td>Timestamped recording of authentication, uploads, and analyses</td>
+                <td><span class="badge badge-low">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="disclaimer-box" style="margin-top: 1.5rem;">
+          <strong>Important Safety &amp; Accuracy Notice:</strong>
+          TraceX provides AI-assisted analysis and behavioural risk indicators. It does NOT claim to determine the real identity of an anonymous person, prove account fabrication, or establish legal guilt. This prototype utilizes a proof-of-concept model trained on representative prototype data.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div class="brand-logo">
+          <span>TraceX</span>
+          <span class="brand-badge">v1.0.0</span>
+        </div>
+        <div style="color: var(--text-secondary); font-size: 0.825rem;">
+          AI-Powered Cyberstalking Detection &amp; Digital Safety Platform
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TraceX Security. Built for digital safety and risk awareness.</div>
+        <div>Off-chain evidence integrity | Proof-of-Concept Prototype</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

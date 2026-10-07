@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Dashboard — TraceX</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-brand">
+        <a href="/" class="brand-logo" id="sidebar-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M12 8v4"/>
+            <path d="M12 16h.01"/>
+          </svg>
+          <span>TraceX</span>
+          <span class="brand-badge">SecOps</span>
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#overview" class="sidebar-link active" id="nav-overview">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="#presets-section" class="sidebar-link" id="nav-presets">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>1-Click Presets</span>
+          </a>
+        </li>
+        <li>
+          <a href="#analyzer" class="sidebar-link" id="nav-analyzer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>AI Analyzer</span>
+          </a>
+        </li>
+        <li>
+          <a href="#incidents" class="sidebar-link" id="nav-incidents">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Incident History</span>
+          </a>
+        </li>
+        {% if user.role == 'admin' %}
+        <li>
+          <a href="#admin-users" class="sidebar-link" id="nav-users">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>User Accounts</span>
+          </a>
+        </li>
+        <li>
+          <a href="#admin-audit" class="sidebar-link" id="nav-audit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+            <span>Audit Trail</span>
+          </a>
+        </li>
+        {% endif %}
+        <li>
+          <a href="#security-center" class="sidebar-link" id="nav-security">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Security Center</span>
+          </a>
+        </li>
+        {% if user.role == 'admin' %}
+        <li>
+          <a href="/admin" class="sidebar-link" id="nav-admin" style="color: #60A5FA;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Admin Console ↗</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <!-- User Profile & Session Info -->
+      <div class="sidebar-user">
+        <div class="sidebar-user-info">
+          <span class="sidebar-username">{{ user.username }}</span>
+          <span class="sidebar-role">{{ user.role }}</span>
+        </div>
+        <button class="btn btn-outline btn-sm" data-logout id="sidebar-logout-btn" title="Sign Out">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.65rem;">
+            <h1 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">
+              TraceX Master Security Portal
+            </h1>
+            <span class="badge badge-blue" style="font-size: 0.7rem; font-weight: 600;">ALL-IN-ONE LINK ACTIVE</span>
+          </div>
+          <p style="font-size: 0.825rem; color: var(--text-secondary); margin-top: 2px;">
+            Complete cyberstalking detection suite, evidence chain-of-custody, user directory, and security audit trail.
+          </p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="badge badge-low">Operational &bull; Connected</span>
+          {% if user.role == 'admin' %}
+          <a href="/admin" class="btn btn-outline btn-sm" target="_blank">Standalone Admin ↗</a>
+          {% endif %}
+        </div>
+      </header>
+
+      <!-- Sticky Jump Pills Bar (One-Link Feature Navigator) -->
+      <nav class="jump-pills-bar" aria-label="Quick Feature Navigation">
+        <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 4px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Direct Feature Access:
+        </span>
+        <a href="#presets-section" class="jump-pill">⚡ 1-Click Presets</a>
+        <a href="#overview" class="jump-pill">📊 Risk Metrics</a>
+        <a href="#analyzer" class="jump-pill">🤖 AI Threat Analyzer</a>
+        <a href="#incidents" class="jump-pill">📋 Incident History</a>
+        {% if user.role == 'admin' %}
+        <a href="#admin-users" class="jump-pill">👥 Registered Accounts</a>
+        <a href="#admin-audit" class="jump-pill">📜 Security Audit Logs</a>
+        {% endif %}
+        <a href="#security-center" class="jump-pill">🛡️ Security Architecture</a>
+      </nav>
+
+      <div class="dashboard-content">
+        <!-- 1-Click Interactive Threat Presets Section -->
+        <div class="presets-container" id="presets-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h2 style="font-size: 1rem; font-weight: 700; color: var(--primary-blue); display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                One-Click Threat Simulation &amp; Quick Feature Tests
+              </h2>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px;">
+                Instant preset scenarios to test the AI classifier, 6-category behavioural detection, and identity verification in one click.
+              </p>
+            </div>
+            <span class="badge badge-blue">Interactive Test Suite</span>
+          </div>
+
+          <div class="preset-btn-group">
+            <button type="button" class="preset-btn preset-btn-danger" id="preset-severe-btn" title="Simulate high-risk location tracking and stalking">
+              🚨 1. Test Severe Cyberstalking &amp; Tracking (High Risk)
+            </button>
+            <button type="button" class="preset-btn preset-btn-warning" id="preset-coercion-btn" title="Simulate impersonator with extortion and surveillance threats">
+              ⚠️ 2. Test Coercion &amp; Impersonator (Medium Risk)
+            </button>
+            <button type="button" class="preset-btn preset-btn-success" id="preset-safe-btn" title="Simulate normal safe conversation">
+              🟢 3. Test Safe Communication (Low Risk)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="preset-clear-btn" style="margin-left: auto;">
+              🔄 Reset Form
+            </button>
+          </div>
+        </div>
+
+        <!-- Overview Metrics -->
+        <section id="overview">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Total Incidents</span>
+                <span class="badge badge-blue">Recorded</span>
+              </div>
+              <div class="stat-value" id="stat-total-incidents">0</div>
+              <div class="stat-desc">All evaluated communications</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">High Risk</span>
+                <span class="badge badge-high">Threat</span>
+              </div>
+              <div class="stat-value" id="stat-high-risk" style="color: var(--risk-high);">0</div>
+              <div class="stat-desc">Score &ge; 70 (Urgent monitoring)</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Medium Risk</span>
+                <span class="badge badge-medium">Caution</span>
+              </div>
+              <div class="stat-value" id="stat-med-risk" style="color: var(--risk-medium);">0</div>
+              <div class="stat-desc">Score 40 – 69 (Suspicious)</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Low Risk</span>
+                <span class="badge badge-low">Normal</span>
+              </div>
+              <div class="stat-value" id="stat-low-risk" style="color: var(--risk-low);">0</div>
+              <div class="stat-desc">Score 0 – 39 (Low indicator)</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Identity Flags</span>
+                <span class="badge badge-high">Metadata</span>
+              </div>
+              <div class="stat-value" id="stat-id-flags">0</div>
+              <div class="stat-desc">Potentially deceptive handles</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AI Analyzer & Live Result Section -->
+        <section id="analyzer" style="margin-bottom: 2.5rem;">
+          <div class="analyzer-grid">
+            <!-- Submission Card -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    New Incident Analysis
+                  </h2>
+                  <p class="card-desc">Submit potentially suspicious messages and metadata for risk evaluation.</p>
+                </div>
+              </div>
+
+              <form id="analyzer-form">
+                <div class="form-group">
+                  <label for="platform" class="form-label">Communication Platform *</label>
+                  <select id="platform" name="platform" class="form-select" required>
+                    <option value="Instagram">Instagram</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Telegram">Telegram</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="X">X (Twitter)</option>
+                    <option value="Email">Email</option>
+                    <option value="SMS">SMS</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+                  <div class="form-group">
+                    <label for="sender-username" class="form-label">Sender Username / Handle</label>
+                    <input type="text" id="sender-username" class="form-input" placeholder="e.g. anon_user_99">
+                  </div>
+                  <div class="form-group">
+                    <label for="sender-name" class="form-label">Sender Display Name</label>
+                    <input type="text" id="sender-name" class="form-input" placeholder="e.g. John Doe">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="profile-url" class="form-label">Profile URL</label>
+                  <input type="url" id="profile-url" class="form-input" placeholder="https://instagram.com/account">
+                </div>
+
+                <div class="form-group">
+                  <label for="message-content" class="form-label">Suspicious Message Text *</label>
+                  <textarea 
+                    id="message-content" 
+                    class="form-textarea" 
+                    required 
+                    placeholder="Paste the received message content here for AI and behavioural analysis..."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="evidence-file" class="form-label">Evidence Attachment (Screenshot or PDF)</label>
+                  <input 
+                    type="file" 
+                    id="evidence-file" 
+                    class="form-input" 
+                    accept=".png,.jpg,.jpeg,.pdf"
+                    style="padding: 0.4rem 0.6rem;"
+                  >
+                  <div id="file-upload-status" class="form-help" style="color: var(--primary-blue);"></div>
+                  <div class="form-help">Max 10 MB. Cryptographic SHA-256 hash is computed immediately upon receipt.</div>
+                </div>
+
+                <button type="submit" id="analyze-submit-btn" class="btn btn-primary" style="width: 100%;">
+                  Analyze with TraceX AI
+                </button>
+              </form>
+            </div>
+
+            <!-- Dynamic Result Panel -->
+            <div class="result-panel" id="result-panel-container" style="display: none;">
+              <div class="result-header">
+                <div>
+                  <h3 class="card-title" style="color: var(--primary-blue);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    TraceX Analysis Report
+                  </h3>
+                  <div style="font-size: 0.775rem; color: var(--text-secondary);">Incident evaluated and archived</div>
+                </div>
+                <span id="res-level-badge" class="badge badge-low">LOW</span>
+              </div>
+
+              <!-- Risk Score Meter -->
+              <div class="score-meter-box">
+                <div class="score-number" id="res-score-number">0</div>
+                <div class="score-details">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                    <span style="font-weight: 600;">Consolidated Risk Score</span>
+                    <span style="color: var(--text-secondary);">/ 100</span>
+                  </div>
+                  <div class="score-bar-bg">
+                    <div class="score-bar-fill" id="res-score-bar-fill" style="width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Metadata Summary -->
+              <div class="result-detail-row">
+                <span class="result-detail-label">Platform:</span>
+                <span class="result-detail-value" id="res-platform">—</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="result-detail-label">Sender:</span>
+                <span class="result-detail-value" id="res-sender">—</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="result-detail-label">AI Prediction:</span>
+                <span class="result-detail-value" id="res-prediction">—</span>
+              </div>
+              <div class="result-detail-row">
+                <span class="result-detail-label">AI Confidence:</span>
+                <span class="result-detail-value" id="res-confidence">—</span>
+              </div>
+
+              <!-- Behavioural Patterns -->
+              <div style="margin-top: 1rem;">
+                <span style="font-size: 0.825rem; font-weight: 600; color: var(--text-secondary);">Detected Behavioural Patterns:</span>
+                <ul class="patterns-list" id="res-patterns-list">
+                  <li style="color: var(--text-secondary); font-size: 0.825rem;">No strong suspicious pattern detected</li>
+                </ul>
+              </div>
+
+              <!-- Identity Indicators -->
+              <div style="margin-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <span style="font-size: 0.825rem; font-weight: 600; color: var(--text-secondary);">Potential Identity Indicators:</span>
+                  <span id="res-id-status-badge" class="badge badge-neutral">LOW INDICATOR</span>
+                </div>
+                <ul id="res-id-indicators-list" style="list-style: none; padding-left: 0;"></ul>
+              </div>
+
+              <!-- Evidence File & Hash -->
+              <div id="res-evidence-row" style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); display: none; flex-direction: column; gap: 0.35rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.825rem; flex-wrap: wrap; gap: 0.5rem;">
+                  <div>
+                    <span class="result-detail-label">Evidence Attached:</span>
+                    <span id="res-evidence-filename" style="margin-left: 0.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-primary);"></span>
+                  </div>
+                  <a id="res-evidence-link" href="#" target="_blank" class="btn btn-outline btn-sm">View File</a>
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+                  <span>SHA-256:</span>
+                  <span id="res-evidence-hash" class="hash-mono"></span>
+                </div>
+              </div>
+
+              <!-- Safety Disclaimer -->
+              <div class="disclaimer-box">
+                <strong>Disclaimer:</strong> AI-assisted analysis only. Results are potential behavioural indicators and do not constitute proof of identity, legal guilt, or criminal intent.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Incident History Table Section -->
+        <section id="incidents" style="margin-bottom: 2.5rem;">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  Incident History
+                </h2>
+                <p class="card-desc">Chronological log of recorded assessments for this account.</p>
+              </div>
+              <button class="btn btn-outline btn-sm" onclick="fetchIncidentHistory()">Refresh</button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Platform</th>
+                    <th>Sender</th>
+                    <th>Risk</th>
+                    <th>Score</th>
+                    <th>Identity Status</th>
+                    <th>Recorded At</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="incidents-table-body">
+                  <!-- Populated via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+
+            <div id="incidents-empty-state" style="text-align: center; padding: 2.5rem 1rem; color: var(--text-secondary); display: none;">
+              No incidents recorded yet. Use the AI Analyzer above to evaluate a suspicious message.
+            </div>
+          </div>
+        </section>
+
+        <!-- Security Center Section -->
+        <section id="security-center" style="margin-bottom: 2.5rem;">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  Security Center
+                </h2>
+                <p class="card-desc">Active platform protections and evidence integrity verification.</p>
+              </div>
+              <span class="badge badge-low">All Systems Operational</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+              <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--text-primary);">Password Hashing</strong>
+                  <span class="badge badge-low">Active</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">PBKDF2/scrypt one-way salt generation. Plaintext passwords never stored.</div>
+              </div>
+
+              <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--text-primary);">Session Authentication</strong>
+                  <span class="badge badge-low">Active</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">Cryptographically signed cookie sessions with HttpOnly &amp; SameSite flags.</div>
+              </div>
+
+              <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--text-primary);">Role-Based Access (RBAC)</strong>
+                  <span class="badge badge-low">Active</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">Enforced server-side checks restricting audit logs and management tools.</div>
+              </div>
+
+              <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--text-primary);">Evidence Integrity Hashing</strong>
+                  <span class="badge badge-low">Active</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">SHA-256 fingerprint generated upon upload to protect evidence chain of custody.</div>
+              </div>
+
+              <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--text-primary);">Audit Logging</strong>
+                  <span class="badge badge-low">Active</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">Every authentication, file upload, and analysis request recorded in SQLite audit trail.</div>
+              </div>
+
+              <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--text-primary);">Off-Chain Integrity Architecture</strong>
+                  <span class="badge badge-neutral">Blockchain-Ready</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">Cryptographic hashes suitable for future anchoring onto distributed public ledgers.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
